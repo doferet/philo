@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 12:23:16 by doferet           #+#    #+#             */
-/*   Updated: 2024/08/30 15:34:46 by doferet          ###   ########.fr       */
+/*   Updated: 2024/09/03 15:13:15 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 fonction void *je_mange;
 fonction void *je_pense;
 fonction void *je_dors;
+(dans l ordre)
 a donner a la routine des threads 
 
 /*void *print_message_function(void *ptr)
@@ -52,9 +53,10 @@ nubers_of_philosophers = nb de thread est-ce qu'il faut faire une fonction de cr
 
 int main(int ac, char **av)
 {
-     1 thread par philo 
-     1 fourchette par philo
-     if(numbers_of_philosophers > 200)
-          return(0);
+     if (ac != 5 || ac != 6)
+          return (0);
+     check_error();
+     init_philo();
+     
 }
 
