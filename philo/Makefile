@@ -6,6 +6,13 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -pthread
 
 SRC = philo.c \
+      utils.c \
+      init_philo.c \
+      ckeck_error.c \
+      routine.c \
+      sleep.c \
+      die.c \
+	  eat.c \
 
 OBJ = $(SRC:.c=.o)
 

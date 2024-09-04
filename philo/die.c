@@ -6,9 +6,10 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:00:48 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/03 16:01:14 by doferet          ###   ########.fr       */
+/*   Updated: 2024/09/04 15:16:08 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+verifier si un philo est mort, si oui, le programme s'arrete

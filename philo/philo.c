@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 12:23:16 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/03 15:13:15 by doferet          ###   ########.fr       */
+/*   Updated: 2024/09/04 16:08:33 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,16 @@ nubers_of_philosophers = nb de thread est-ce qu'il faut faire une fonction de cr
 
 int main(int ac, char **av)
 {
+     t_philo   philo;
      if (ac != 5 || ac != 6)
           return (0);
      check_error();
-     init_philo();
+     initialization(&philo, ac, av);
      
 }
-
+message a print : 
+     has taken a fork, 
+     is eating, 
+     is thinking, 
+     is spleeping,
+     died,
