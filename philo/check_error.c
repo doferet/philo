@@ -6,9 +6,14 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:27:13 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/03 15:27:31 by doferet          ###   ########.fr       */
+/*   Updated: 2024/09/10 17:34:33 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int    check_error(const char *error)
+{
+    printf("%s\n", error);
+    return (0);
+}

@@ -6,17 +6,17 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:16:09 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/04 17:03:03 by doferet          ###   ########.fr       */
+/*   Updated: 2024/09/10 17:16:44 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(char *str)
+long	ft_atol(char *str)
 {
 	int	i;
 	int	sign;
-	int	result;
+	long	result;
 
 	i = 0;
 	sign = 1;

@@ -6,17 +6,17 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 12:23:16 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/04 16:08:33 by doferet          ###   ########.fr       */
+/*   Updated: 2024/09/10 17:34:01 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-fonction void *je_mange;
-fonction void *je_pense;
-fonction void *je_dors;
-(dans l ordre)
-a donner a la routine des threads 
+// fonction void *je_mange;
+// fonction void *je_pense;
+// fonction void *je_dors;
+// (dans l ordre)
+// a donner a la routine des threads 
 
 /*void *print_message_function(void *ptr)
 {
@@ -49,20 +49,23 @@ int main()
      printf("Thread 2 returns: %d\n",iret2);
      exit(0);
 }*/
-nubers_of_philosophers = nb de thread est-ce qu'il faut faire une fonction de creation de threads et tant qu'il n'y a pas le bon nom de thread on continue ?'
+//nubers_of_philosophers = nb de thread
+//fonction de creation de threads et tant qu'il n'y a pas le bon nom de thread on continue ?
 
 int main(int ac, char **av)
 {
      t_philo   philo;
-     if (ac != 5 || ac != 6)
-          return (0);
-     check_error();
-     initialization(&philo, ac, av);
      
+     if (ac != 5 || ac != 6)
+          check_error("Wrong input. Try with 5 or 6 arguments.\n"
+                         "ex: ./philo 5 800 200 200");
+     //parse_input(&philo, av);
+     //initialization(&philo, ac, av);
 }
-message a print : 
-     has taken a fork, 
-     is eating, 
-     is thinking, 
-     is spleeping,
-     died,
+
+// message a print : 
+//      has taken a fork, 
+//      is eating, 
+//      is thinking, 
+//      is spleeping,
+//      died,
