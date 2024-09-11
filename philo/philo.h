@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/10 18:23:44 by doferet          ###   ########.fr       */
+/*   Updated: 2024/09/11 13:44:12 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <pthread.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
@@ -24,6 +25,7 @@ typedef struct s_fork
 {
 	int	taken;
 	int	used;
+	int fork_id;
 	pthread_mutex_t fork;
 }	t_fork;
 
@@ -36,8 +38,11 @@ typedef struct s_philo
 	long			must_eat;
 	int				philo_id;
 	long			last_meal;
+	bool			full;
 	long			count_meal;
-	int				end_simulation;
+	long			start_simulation;
+	bool			end_simulation;
+	pthread_t		thread_id;
 	t_fork			*right_fork;
 	t_fork			*left_fork;
 }			t_philo;
