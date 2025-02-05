@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:06:54 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/10 17:01:23 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:29:10 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // ils dorment
 // faire une fonction de temps
 
-void    philo_sleep(t_philo *philo)
+/*void    philo_sleep(t_philo *philo)
 {
     
-}
+}*/

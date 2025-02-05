@@ -6,14 +6,14 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:27:13 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/10 17:34:33 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:00:27 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int    check_error(const char *error)
+int	check_error(const char *error)
 {
-    printf("%s\n", error);
-    return (0);
+	printf("%s\n", error);
+	return (0);
 }

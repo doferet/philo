@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2024/09/11 13:44:12 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/05 18:13:30 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,12 @@
 # define PHILO_H
 
 # include <pthread.h>
-# include <stdio.h>
 # include <stdbool.h>
-# include <unistd.h>
-# include <string.h>
+# include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
-
-typedef struct s_fork
-{
-	int	taken;
-	int	used;
-	int fork_id;
-	pthread_mutex_t fork;
-}	t_fork;
+# include <unistd.h>
 
 typedef struct s_philo
 {
@@ -37,24 +29,29 @@ typedef struct s_philo
 	long			time_to_sleep;
 	long			must_eat;
 	int				philo_id;
-	long			last_meal;
+	size_t			time_last_meal;
 	bool			full;
-	long			count_meal;
-	long			start_simulation;
-	bool			end_simulation;
+	bool			is_dead;
 	pthread_t		thread_id;
-	t_fork			*right_fork;
-	t_fork			*left_fork;
-}			t_philo;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*left_fork;
+}					t_philo;
+
+/****** INIT ********/
+int					initialization(t_philo *philo, char **av);
+
+/****** PARSING ********/
+void				parse_input(t_philo *philo, char **av);
+
+/****** ROUTINE ********/
+void				*routine(void *arg);
+
+/****** ERROR ********/
+int					check_error(const char *error);
 
 /****** UTILS ********/
-long	ft_atol(char *str);
-
-
-/******* INIT ********/
-int	initialization(t_philo *philo);
-
-/******* ERROR *********/
-int    check_error(const char *error);
+long				ft_atol(char *str);
+size_t				get_current_time(void);
+int					ft_usleep(size_t milliseconds);
 
 #endif
