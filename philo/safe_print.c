@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   think.c                                            :+:      :+:    :+:   */
+/*   safe_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 11:42:47 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/06 17:27:30 by doferet          ###   ########.fr       */
+/*   Created: 2025/02/06 15:04:52 by doferet           #+#    #+#             */
+/*   Updated: 2025/02/06 16:54:08 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_think(t_philo *philo)
+void	safe_print(char *msg, t_philo *philo)
 {
-	safe_print("is thinking", philo);
-	ft_usleep(1);
+	int time;
+	
+	time = get_current_time() - philo->start_simulation;
+	pthread_mutex_lock(&philo->msg);
+	printf("%d %d %s\n", time, philo->philo_id, msg);
+	pthread_mutex_unlock(&philo->msg);
 }

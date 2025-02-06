@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:41:48 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/06 11:24:28 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/06 17:57:37 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,28 @@
 // tant que les philos sont pas morts on continue
 // si un philo meurt, fin de la simulation
 
+
 void	*routine(void *arg)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	printf("philo_id = %d\n", philo->philo_id);
+	if (philo->philo_id % 2 == 0)
+	{
+		//printf("ID PHILO : %d\n", philo->philo_id);
+		ft_usleep(200);
+	}
+	while (philo->is_dead == false)
+	{
+		if (philo->is_dead == true)
+			return (NULL);
+		philo_eat(philo);
+		if (philo->is_dead == true)
+			return (NULL);
+		philo_sleep(philo);
+		if (philo->is_dead == true)
+			return (NULL);
+		philo_think(philo);
+	}
 	return (NULL);
 }

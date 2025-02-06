@@ -11,6 +11,11 @@ SRC = philo.c \
       check_error.c \
 	  parsing.c \
 	  routine.c \
+	  die.c \
+	  eat.c \
+	  sleep.c \
+	  think.c \
+	  safe_print.c \
 
 OBJ = $(SRC:.c=.o)
 
