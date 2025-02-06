@@ -3,7 +3,7 @@
 NAME = philo
 
 CC = cc 
-CFLAGS = -Wall -Werror -Wextra -pthread
+CFLAGS = -Wall -Werror -Wextra -pthread -g3
 
 SRC = philo.c \
       utils.c \

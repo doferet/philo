@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/05 18:13:30 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/06 10:56:46 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_philo
 	bool			full;
 	bool			is_dead;
 	pthread_t		thread_id;
-	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	right_fork;
 	pthread_mutex_t	*left_fork;
 }					t_philo;
 

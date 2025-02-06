@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 12:23:16 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/05 18:05:29 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/06 10:35:38 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 	if (ac != 5)
 		check_error("Wrong input. Try with 5 or 6 arguments.\n"
 			"ex: ./philo 5 800 200 200");
-	parse_input(&philo, av);
+	//parse_input(&philo, av);
 	initialization(&philo, av);
 	return (0);
 }

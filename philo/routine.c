@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:41:48 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/05 18:01:57 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/06 11:24:28 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 
 void	*routine(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	printf("philo_id = %lu\n", philo->thread_id);
-	return(NULL);
+	printf("philo_id = %d\n", philo->philo_id);
+	return (NULL);
 }
