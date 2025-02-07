@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:33:39 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/06 18:09:26 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/07 17:05:45 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,13 @@
 //dans ce fichier, je dois creer mes PHILO donc les THREAD
 //initialisation des variables
 
-void	monitor(t_philo *philo)
-{
-	while(1)
-	{
-		if (philo_die(philo) == true || philo->full)
-			break;
-	}
-}
-
 int	philo_run(t_philo *philo)
 {
-	int	i;
+	int			i;
+	pthread_t	lol;
 
 	i = 0;
-	monitor(philo);
+	pthread_create(&lol, NULL, &monitor, &philo->nbr_of_philo);
 	while (i < philo[0].nbr_of_philo)
 	{
 		pthread_create(&philo[i].thread_id, NULL, &routine, &philo[i]);
@@ -48,9 +40,9 @@ int	initialization(t_philo *philo, char **av)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	philo = malloc(sizeof(t_philo) * ft_atol(av[1]));
-	while (i < ft_atol(av[1]))
+	while (++i < ft_atol(av[1]))
 	{
 		parse_input(&philo[i], av);
 		philo[i].full = false;
@@ -67,9 +59,8 @@ int	initialization(t_philo *philo, char **av)
 			return (false);
 		if (pthread_mutex_init(&philo[i].msg, NULL) != 0)
 			return (false);
-		i++;
+		if (pthread_mutex_init(&philo[i].dead, NULL) != 0)
+			return (false);
 	}
-	philo_run(philo);
-	return (true);
+	return (philo_run(philo), true);
 }
-

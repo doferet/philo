@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/06 17:17:50 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/07 17:01:04 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct s_philo
 	bool			full;
 	bool			is_dead;
 	pthread_t		thread_id;
-	pthread_mutex_t	right_fork;
 	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	right_fork;
 	pthread_mutex_t	msg;
+	pthread_mutex_t	dead;
 }					t_philo;
 
 /****** INIT ********/
@@ -52,6 +53,11 @@ void				philo_eat(t_philo *philo);
 void				philo_sleep(t_philo *philo);
 void				philo_think(t_philo *philo);
 bool				philo_die(t_philo *philo);
+bool				philo_full(t_philo *philo);
+void				*monitor(void *arg);
+
+/****** RUN ********/
+int					philo_run(t_philo *philo);
 
 /****** ERROR ********/
 int					check_error(const char *error);
@@ -61,5 +67,9 @@ long				ft_atol(char *str);
 size_t				get_current_time(void);
 int					ft_usleep(size_t milliseconds);
 void				safe_print(char *msg, t_philo *philo);
+bool				safe_death(t_philo *philo);
+
+/****** FREE ********/
+void				free_philo(t_philo *philo);
 
 #endif

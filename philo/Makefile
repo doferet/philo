@@ -5,17 +5,19 @@ NAME = philo
 CC = cc 
 CFLAGS = -Wall -Werror -Wextra -pthread -g3
 
-SRC = philo.c \
-      utils.c \
-      init_philo.c \
-      check_error.c \
+SRC = check_error.c \
+      die.c \
+      eat.c \
+      free_philo.c \
+	  init_philo.c \
+	  monitor.c \
 	  parsing.c \
+	  philo.c \
 	  routine.c \
-	  die.c \
-	  eat.c \
+	  safe_print.c \
 	  sleep.c \
 	  think.c \
-	  safe_print.c \
+	  utils.c \
 
 OBJ = $(SRC:.c=.o)
 

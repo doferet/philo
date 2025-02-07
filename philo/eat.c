@@ -6,29 +6,57 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:00:20 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/06 17:32:51 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/07 18:32:22 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// faire une fonction ou les philo paires mange et les impaires attendent
-// utiliser mutex lock et unlock pour bloquer ou liberer les fourchettes
-// si les philo ne mangent pas, et qu ils ont deja dormi, ils pensent
-// les paires mangent avec les paires et les impairs avec les impairs
+bool	philo_full(t_philo *philo)
+{
+	int	i;
+	int	finish;
+
+	i = 0;
+	finish = 0;
+	if (philo->count_meal >= philo->must_eat)
+	{
+		while (i < philo->nbr_of_philo)
+		{
+			finish++;
+			pthread_mutex_lock(&philo->dead);
+			philo[i].full = true;
+			pthread_mutex_unlock(&philo->dead);
+			i++;
+			if (finish == philo->nbr_of_philo)
+				break ;
+		}
+			//philo->full = true;
+	}
+	return (philo->full);
+}
 
 void	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
-	if (philo->is_dead == true)
+	if (safe_death(philo) == true)
+	{
+		pthread_mutex_unlock(philo->left_fork);
 		return ;
+	}
 	safe_print("has taken a fork", philo);
 	pthread_mutex_lock(&philo->right_fork);
-	if (philo->is_dead == true)
-		return ;
-	safe_print("has taken another fork", philo);
-	if (philo->is_dead == true)
-		return ;
+	if (safe_death(philo) == true)
+	{
+		pthread_mutex_unlock(&philo->right_fork);
+		return (pthread_mutex_unlock(philo->left_fork), (void) NULL);
+	}
+	safe_print("has taken a fork", philo);
+	if (safe_death(philo) == true)
+	{
+		pthread_mutex_unlock(&philo->right_fork);
+		return (pthread_mutex_unlock(philo->left_fork), (void) NULL);
+	}
 	safe_print("is eating", philo);
 	philo->count_meal++;
 	philo->time_last_meal = get_current_time();
