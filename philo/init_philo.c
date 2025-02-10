@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:33:39 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/07 17:05:45 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:41:56 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ int	initialization(t_philo *philo, char **av)
 			philo[i].left_fork = &philo[i + 1].right_fork;
 		else
 			philo[i].left_fork = &philo[0].right_fork;
-		if (pthread_mutex_init(&philo[i].right_fork, NULL) != 0)
-			return (false);
-		if (pthread_mutex_init(&philo[i].msg, NULL) != 0)
-			return (false);
-		if (pthread_mutex_init(&philo[i].dead, NULL) != 0)
-			return (false);
+		pthread_mutex_init(&philo[i].right_fork, NULL);
+			//return (false);
+		pthread_mutex_init(&philo[i].msg, NULL);
+			//return (false);
+		pthread_mutex_init(&philo[i].dead, NULL);
+		pthread_mutex_init(&philo[i].meal, NULL);
+			//return (false);
 	}
 	return (philo_run(philo), true);
 }

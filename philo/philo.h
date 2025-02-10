@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/07 17:01:04 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:30:50 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,16 @@ typedef struct s_philo
 	pthread_mutex_t	right_fork;
 	pthread_mutex_t	msg;
 	pthread_mutex_t	dead;
+	pthread_mutex_t	meal;
 }					t_philo;
+
+// typedef struct s_data_free
+// {
+// 	pthread_mutex_t	msg;
+// 	pthread_mutex_t	dead;
+// 	pthread_mutex_t	meal;
+// 	t_philo	*philo;
+// }					t_data_free;
 
 /****** INIT ********/
 int					initialization(t_philo *philo, char **av);
@@ -53,7 +62,7 @@ void				philo_eat(t_philo *philo);
 void				philo_sleep(t_philo *philo);
 void				philo_think(t_philo *philo);
 bool				philo_die(t_philo *philo);
-bool				philo_full(t_philo *philo);
+//bool				philo_full(t_philo *philo);
 void				*monitor(void *arg);
 
 /****** RUN ********/
