@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:16:09 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/09 01:49:13 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/11 19:18:06 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,31 @@ int	ft_usleep(size_t milliseconds)
 	return (0);
 }
 
-bool	safe_death(t_philo *philo)
+bool	verif_death_full(t_philo *philo, t_mutex *mutex)
 {
-	pthread_mutex_lock(&philo->dead);
-	if (philo->is_dead == true || philo->full == true)
-		return (pthread_mutex_unlock(&philo->dead), true);
-	pthread_mutex_unlock(&philo->dead);
+	pthread_mutex_lock(&mutex->dead);
+	if (philo[0].is_dead == true)
+		return (pthread_mutex_unlock(&mutex->dead), true);
+	pthread_mutex_unlock(&mutex->dead);
+	pthread_mutex_lock(&mutex->meal);
+	if (philo->full == true)
+		return (pthread_mutex_unlock(&mutex->meal), true);
+	pthread_mutex_unlock(&mutex->meal);
 	return (false);
+}
+
+int	ft_isdigit(char *str)
+{
+	int		i;
+	bool	check;
+
+	i = 0;
+	check = true;
+	while (str[i])
+	{
+		if ((str[i] < '0' || str[i] > '9'))
+			check = false;
+		i++;
+	}
+	return (check);
 }

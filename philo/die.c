@@ -6,15 +6,13 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:00:48 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/10 18:40:34 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:14:44 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//verifier si un philo est mort, si oui, le programme s'arrete
-
-bool	philo_die(t_philo *philo)
+bool	philo_die(t_philo *philo, t_mutex *mutex)
 {
 	int	i;
 
@@ -27,11 +25,13 @@ bool	philo_die(t_philo *philo)
 		{
 			if (philo->nbr_of_philo == 1)
 				break ;
+			pthread_mutex_lock(&philo->mutex->dead);
 			philo[i].is_dead = true;
+			pthread_mutex_unlock(&philo->mutex->dead);
 			i++;
 		}
-		safe_print("died", philo);
+		safe_print("died", philo, mutex);
+		return (true);
 	}	
-	return (philo->is_dead);
+	return (false);
 }
-//tmps actuel - tmps dernier repas > tmps mourir alors is dead true

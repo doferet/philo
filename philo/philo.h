@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/10 18:30:50 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/11 19:17:40 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
+
+# define PHILO_MAX 300
 
 typedef struct s_philo
 {
@@ -37,48 +39,46 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	right_fork;
+	struct s_mutex	*mutex;
+}					t_philo;
+
+typedef struct s_mutex
+{
 	pthread_mutex_t	msg;
 	pthread_mutex_t	dead;
 	pthread_mutex_t	meal;
-}					t_philo;
-
-// typedef struct s_data_free
-// {
-// 	pthread_mutex_t	msg;
-// 	pthread_mutex_t	dead;
-// 	pthread_mutex_t	meal;
-// 	t_philo	*philo;
-// }					t_data_free;
+	t_philo			*philo;
+}				t_mutex;
 
 /****** INIT ********/
-int					initialization(t_philo *philo, char **av);
+int					initialization(t_philo *philo, t_mutex *mutex, char **av);
 
 /****** PARSING ********/
 void				parse_input(t_philo *philo, char **av);
 
 /****** ROUTINE ********/
 void				*routine(void *arg);
-void				philo_eat(t_philo *philo);
+void				philo_eat(t_philo *philo, t_mutex *mutex);
 void				philo_sleep(t_philo *philo);
 void				philo_think(t_philo *philo);
-bool				philo_die(t_philo *philo);
-//bool				philo_full(t_philo *philo);
+bool				philo_die(t_philo *philo, t_mutex *mutex);
 void				*monitor(void *arg);
 
 /****** RUN ********/
 int					philo_run(t_philo *philo);
 
 /****** ERROR ********/
-int					check_error(const char *error);
+bool				check_error(int ac, char **av);
 
 /****** UTILS ********/
 long				ft_atol(char *str);
 size_t				get_current_time(void);
 int					ft_usleep(size_t milliseconds);
-void				safe_print(char *msg, t_philo *philo);
-bool				safe_death(t_philo *philo);
+void				safe_print(char *msg, t_philo *philo, t_mutex *mutex);
+bool				verif_death_full(t_philo *philo, t_mutex *mutex);
+int					ft_isdigit(char *str);
 
 /****** FREE ********/
-void				free_philo(t_philo *philo);
+void				free_philo(t_mutex *mutex);
 
 #endif

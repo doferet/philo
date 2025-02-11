@@ -6,20 +6,20 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:04:52 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/09 01:44:30 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:54:57 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	safe_print(char *msg, t_philo *philo)
+void	safe_print(char *msg, t_philo *philo, t_mutex *mutex)
 {
 	int	time;
 
+	pthread_mutex_lock(&philo->mutex->msg);
 	time = get_current_time() - philo->start_simulation;
 	if (philo->full)
 		return ;
-	pthread_mutex_lock(&philo->msg);
 	printf("%d %d %s\n", time, philo->philo_id, msg);
-	pthread_mutex_unlock(&philo->msg);
+	pthread_mutex_unlock(&mutex->msg);
 }
