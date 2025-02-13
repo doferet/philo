@@ -6,14 +6,11 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:33:39 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/11 16:05:23 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/13 11:29:13 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-//dans ce fichier, je dois creer mes PHILO donc les THREAD
-//initialisation des variables
 
 static int	one_philo(t_philo *philo)
 {

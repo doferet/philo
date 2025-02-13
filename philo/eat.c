@@ -6,21 +6,11 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:00:20 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/11 15:48:18 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:06:07 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	philo_full(t_philo *philo, t_mutex *mutex)
-{
-	if (philo->must_eat > 0 && philo->count_meal == philo->must_eat)
-	{
-		pthread_mutex_lock(&mutex->dead);
-		philo->full = true;
-		pthread_mutex_unlock(&mutex->dead);
-	}
-}
 
 void	philo_eat(t_philo *philo, t_mutex *mutex)
 {
@@ -44,7 +34,6 @@ void	philo_eat(t_philo *philo, t_mutex *mutex)
 	philo->count_meal++;
 	philo->time_last_meal = get_current_time();
 	ft_usleep(philo->time_to_eat);
-	philo_full(philo, mutex);
 	pthread_mutex_unlock(&philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 }
