@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:04:52 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/12 13:12:20 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:22:59 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	safe_print(char *msg, t_philo *philo, t_mutex *mutex)
 {
 	int	time;
 
-	pthread_mutex_lock(&philo->mutex->msg);
+	pthread_mutex_lock(&mutex->msg);
 	time = get_current_time() - philo->start_simulation;
 	if (philo->full)
 		return ;

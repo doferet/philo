@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/11 19:17:40 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:09:17 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define PHILO_MAX 300
+# define PHILO_MAX 200
 
 typedef struct s_philo
 {

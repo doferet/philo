@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:00:48 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/12 11:20:59 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:57:06 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ bool	philo_die(t_philo *philo, t_mutex *mutex)
 		{
 			if (philo->nbr_of_philo == 1)
 				break ;
-			pthread_mutex_lock(&philo->mutex->dead);
+			pthread_mutex_lock(&mutex->dead);
 			philo[i].is_dead = true;
-			pthread_mutex_unlock(&philo->mutex->dead);
+			pthread_mutex_unlock(&mutex->dead);
 			i++;
 		}
 		safe_print("died", philo, mutex);
 		return (true);
-	}	
+	}
 	return (false);
 }

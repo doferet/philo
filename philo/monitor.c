@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:00:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/12 13:12:09 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/17 18:50:13 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	*monitor(void *arg)
 		if (philo_die(philo, philo->mutex) == true
 			|| philo_full(philo, philo->mutex))
 			break ;
+		ft_usleep(1);
 	}
 	return (NULL);
 }
