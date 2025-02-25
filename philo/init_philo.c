@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:33:39 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/13 11:29:13 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:06:18 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,21 @@ static int	one_philo(t_philo *philo)
 int	philo_run(t_philo *philo)
 {
 	int			i;
-	pthread_t	lol;
+	pthread_t	supervisor;
 
 	i = 0;
-	pthread_create(&lol, NULL, &monitor, &philo->nbr_of_philo);
+	pthread_create(&supervisor, NULL, &monitor, &philo->nbr_of_philo);
 	while (i < philo->nbr_of_philo)
 	{
 		pthread_create(&philo[i].thread_id, NULL, &routine, &philo[i]);
 		i++;
 	}
 	i = 0;
-	pthread_join(lol, NULL);
-	while (i < philo[0].nbr_of_philo)
+	pthread_join(supervisor, NULL);
+	while (i < philo->nbr_of_philo)
 	{
-		pthread_join(philo[i].thread_id, NULL);
+		if (pthread_join(philo[i].thread_id, NULL) != 0)
+			free_philo(philo->mutex);
 		i++;
 	}
 	return (0);
@@ -68,10 +69,10 @@ int	initialization(t_philo *philo, t_mutex *mutex, char **av)
 		else
 			philo[i].left_fork = &philo[0].right_fork;
 		pthread_mutex_init(&philo[i].right_fork, NULL);
-		pthread_mutex_init(&mutex->msg, NULL);
-		pthread_mutex_init(&mutex->dead, NULL);
-		pthread_mutex_init(&mutex->meal, NULL);
 	}
+	pthread_mutex_init(&mutex->msg, NULL);
+	pthread_mutex_init(&mutex->dead, NULL);
+	pthread_mutex_init(&mutex->meal, NULL);
 	if (!one_philo(philo))
 		return (1);
 	return (philo_run(philo), true);

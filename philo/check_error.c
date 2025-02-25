@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:27:13 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/17 13:01:23 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/21 12:34:29 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static bool	verif_minmax(char **av)
 		|| (ft_atol(av[5]) && ft_atol(av[5]) >= 2147483647)
 		|| ft_atol(av[5]) <= -2147483648)
 	{
-		write_error("Wrong input. Try with 5 or 6 arguments.\n"
-			"ex: ./philo 5 800 200 200");
+		write_error("Wrong input. Try with ex: ./philo 5 800 200 200");
 		return (true);
 	}
 	return (false);
