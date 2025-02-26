@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:07:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/25 12:44:13 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/26 12:09:14 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool				check_error(int ac, char **av);
 /****** UTILS ********/
 long				ft_atol(char *str);
 size_t				get_current_time(void);
-int					ft_usleep(size_t milliseconds);
+int					ft_usleep(t_philo *philo, size_t milliseconds);
 void				safe_print(char *msg, t_philo *philo, t_mutex *mutex);
 bool				verif_death_full(t_philo *philo, t_mutex *mutex);
 int					ft_isdigit(char *str);

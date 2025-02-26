@@ -3,7 +3,7 @@
 NAME = philo
 
 CC = cc 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 
 SRC = check_error.c \
       die.c \

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:33:39 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/25 15:06:18 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/26 12:08:35 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	one_philo(t_philo *philo)
 	{
 		pthread_mutex_lock(&philo->right_fork);
 		safe_print("has taken a fork", philo, philo->mutex);
-		ft_usleep(philo->time_to_die);
+		ft_usleep(philo, philo->time_to_die);
 		safe_print("died", philo, philo->mutex);
 		pthread_mutex_unlock(&philo->right_fork);
 		return (0);
@@ -32,18 +32,21 @@ int	philo_run(t_philo *philo)
 	pthread_t	supervisor;
 
 	i = 0;
-	pthread_create(&supervisor, NULL, &monitor, &philo->nbr_of_philo);
+	if (pthread_create(&supervisor, NULL, &monitor, &philo->nbr_of_philo) != 0)
+		return (1);
 	while (i < philo->nbr_of_philo)
 	{
-		pthread_create(&philo[i].thread_id, NULL, &routine, &philo[i]);
+		if (pthread_create(&philo[i].thread_id, NULL, &routine, &philo[i]) != 0)
+			return (1);
 		i++;
 	}
 	i = 0;
-	pthread_join(supervisor, NULL);
+	if (pthread_join(supervisor, NULL) != 0)
+		return (1);
 	while (i < philo->nbr_of_philo)
 	{
 		if (pthread_join(philo[i].thread_id, NULL) != 0)
-			free_philo(philo->mutex);
+			return (1);
 		i++;
 	}
 	return (0);

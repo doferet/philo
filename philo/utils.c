@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:16:09 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/17 15:33:12 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/26 12:09:52 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,17 @@ size_t	get_current_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int	ft_usleep(size_t milliseconds)
+int	ft_usleep(t_philo *philo, size_t milliseconds)
 {
 	size_t	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
+	{
 		usleep(500);
+		if (verif_death_full(philo, philo->mutex) == true)
+			return (1);
+	}
 	return (0);
 }
 
