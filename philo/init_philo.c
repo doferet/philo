@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:33:39 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/26 12:08:35 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:55:31 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int	initialization(t_philo *philo, t_mutex *mutex, char **av)
 		philo[i].count_meal = 0;
 		philo[i].mutex = mutex;
 		philo[i].philo_id = i + 1;
-		if (i < philo[0].nbr_of_philo - 1)
-			philo[i].left_fork = &philo[i + 1].right_fork;
-		else
+		if (i == philo[0].nbr_of_philo - 1)
 			philo[i].left_fork = &philo[0].right_fork;
+		else
+			philo[i].left_fork = &philo[i + 1].right_fork;
 		pthread_mutex_init(&philo[i].right_fork, NULL);
 	}
 	pthread_mutex_init(&mutex->msg, NULL);
