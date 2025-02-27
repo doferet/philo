@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:00:20 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/26 16:11:08 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/26 12:08:28 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	philo_even_and_odd(t_philo *philo, t_mutex *mutex)
 {
-	if (philo->philo_id % 2 != 0)
+	if (philo->philo_id % 2)
 	{
 		pthread_mutex_lock(philo->left_fork);
 		if (verif_death_full(philo, philo->mutex) == true)

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:00:02 by doferet           #+#    #+#             */
-/*   Updated: 2025/02/26 16:18:47 by doferet          ###   ########.fr       */
+/*   Updated: 2025/02/27 12:07:06 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	philo_full(t_philo *philo, t_mutex *mutex)
 	while (i < philo->nbr_of_philo)
 	{
 		pthread_mutex_lock(&mutex->meal);
-		if (philo->count_meal > philo->must_eat)
+		if (philo[i].count_meal >= philo->must_eat)
 			count++;
 		pthread_mutex_unlock(&mutex->meal);
 		i++;
@@ -48,9 +48,13 @@ void	*monitor(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		if (philo_die(philo, philo->mutex) == true
-			|| philo_full(philo, philo->mutex) == true)
+		if (philo_die(philo, philo->mutex) == true)
 			break ;
+		if (philo->must_eat != -1)
+		{
+			if (philo_full(philo, philo->mutex) == true)
+				break ;
+		}
 	}
 	return (NULL);
 }
